@@ -144,7 +144,7 @@ static void printLLVMOpAttrs(OpAsmPrinter &printer, Operation *op,
     printer.printOptionalAttrDict(
         filteredAttrs, /*elidedAttrs=*/{iface.getOverflowFlagsAttrName()});
   } else {
-    printer.printOptionalAttrDict(filteredAttrs);
+    printer.printOptionalAttrDict(filteredAttrs, {"isExact"});
   }
 }
 
