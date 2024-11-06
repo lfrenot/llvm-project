@@ -91,7 +91,7 @@ class LLVM_IntArithmeticOpWithIsExact<string mnemonic, string instName,
   }];
   string llvmBuilder =
     "$res = builder.Create" # instName #
-    "($lhs, $rhs, /*Name=*/\"\", op.hasIsExact());";
+    "($lhs, $rhs, /*Name=*/\"\", op.getIsExact());";
 }
 class LLVM_FloatArithmeticOp<string mnemonic, string instName,
                              list<Trait> traits = []> :
