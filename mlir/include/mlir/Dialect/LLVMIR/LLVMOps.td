@@ -83,9 +83,7 @@ class LLVM_IntArithmeticOpWithIsExact<string mnemonic, string instName,
 
   string mlirBuilder = [{
     auto op = $_builder.create<$_qualCppClassName>($_location, $lhs, $rhs);
-    if ($isExact) {
-      op.setIsExact();
-    }
+    op.setIsExact($isExact);
     $res = op;
   }];
   let assemblyFormat = [{
