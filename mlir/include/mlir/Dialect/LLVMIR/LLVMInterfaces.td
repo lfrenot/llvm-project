@@ -87,6 +87,33 @@ def IntegerOverflowFlagsInterface : OpInterface<"IntegerOverflowFlagsInterface">
   ];
 }
 
+def ExactFlagInterface : OpInterface<"ExactFlagInterface"> {
+  let description = [{
+    This interface defines an LLVM operation with an exact flag and
+    provides a uniform API for accessing it.
+  }];
+
+  let cppNamespace = "::mlir::LLVM";
+
+  let methods = [
+    InterfaceMethod<[{
+      Get the exact flag for the operation.
+    }], "bool", "getIsExact", (ins), [{}], [{
+      return $_op.getIsExact();
+    }]>,
+    InterfaceMethod<[{
+      Set the exact flag for the operation.
+    }], "void", "setIsExact", (ins UnitAttr:$isExact), [{}], [{
+      $_op.setIsExact() = isExact;
+    }]>,
+    StaticInterfaceMethod<[{
+      Get the attribute name of the isExact property.
+    }], "StringRef", "getIsExactName", (ins), [{}], [{
+      return "isExact";
+    }]>,
+  ];
+}
+
 def BranchWeightOpInterface : OpInterface<"BranchWeightOpInterface"> {
   let description = [{
     An interface for operations that can carry branch weights metadata. It
